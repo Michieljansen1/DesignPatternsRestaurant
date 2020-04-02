@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Restaurant.Models;
 
 namespace Restaurant.Memento
 {
-    class ProfileManagerMemento
+    /// <summary>
+    ///     Loads and saves the given profile
+    /// </summary>
+    internal class ProfileManagerMemento
     {
+        private Profile _profile;
+
     }
 }
