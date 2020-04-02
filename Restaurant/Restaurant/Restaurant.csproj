@@ -119,9 +119,30 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Builders\AnalogBillBuilder.cs" />
+    <Compile Include="Builders\BillBuilder.cs" />
+    <Compile Include="Builders\BillDirector.cs" />
+    <Compile Include="Builders\DigitalBillBuilder.cs" />
+    <Compile Include="Common\AnalogBill.cs" />
+    <Compile Include="Common\DeliveryToCar.cs" />
+    <Compile Include="Common\DeliveryToTable.cs" />
+    <Compile Include="Common\DigitalBill.cs" />
+    <Compile Include="Common\OrderMachine.cs" />
+    <Compile Include="Decorators\DeliveryDecorator.cs" />
+    <Compile Include="Factories\MenuFactory.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Memento\ProfileCaretaker.cs" />
+    <Compile Include="Memento\ProfileManagerMemento.cs" />
+    <Compile Include="Models\Delivery.cs" />
+    <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="Models\Menus\BurgerMenu.cs" />
+    <Compile Include="Models\Menus\JuniorMenu.cs" />
+    <Compile Include="Models\Menus\WrapMenu.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +175,7 @@
       <Version>6.2.9</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
