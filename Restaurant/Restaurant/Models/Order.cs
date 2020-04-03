@@ -7,7 +7,7 @@ namespace Restaurant.Models
         public abstract int GetDiscount();
 
         
-        public abstract string DeliveryType(string deliveryType);
+        public abstract string DeliveryType(Types.DeliveryType deliveryType);
 
     }
 }

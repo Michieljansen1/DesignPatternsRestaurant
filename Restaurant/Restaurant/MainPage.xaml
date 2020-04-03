@@ -5,6 +5,8 @@
     xmlns:local="using:Restaurant"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:Restaurant.Models"
+    xmlns:common="using:Restaurant.Common"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Light" Width="auto">
 
@@ -21,12 +23,16 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <ComboBox x:Name="cmb_profile" ItemsSource="{Binding ProfileCaretaker.Profiles, Mode=OneWay}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" SelectedIndex="0" SelectionChanged="Cmb_profile_OnSelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding ProfileId}"></TextBlock>
+                    <TextBlock >
+                        <Run Text="Profiel: "/>
+                        <Run Text="{Binding ProfileId}"/>
+                    </TextBlock>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
@@ -38,18 +44,15 @@
         <ComboBox x:Name="cmb_sizeType" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch" SelectedIndex="0"/>
         <Button x:Name="btn_addMenu" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Stretch" Content="Toevoegen" Click="Btn_addMenu_OnClick"/>
 
-        <local:MenuViewer x:Name="lst_menus" DataContext="{Binding ActiveProfile.ItemCollection, Mode=OneWay}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5"></local:MenuViewer>
+        <local:MenuViewer x:Name="lst_menus" DataContext="{Binding ActiveProfile.ItemCollection, Mode=OneWay}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6"></local:MenuViewer>
 
-        <Button x:Name="btn_compleetOrder" Grid.Row="4" Grid.Column="5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Content="Bestellen" />
-        <TextBlock Grid.Row="4" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Text="Total: is 10000000"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+            <Run Text="Totaal:"/>
+                <Run Text="{Binding TotalPrice, Mode=OneWay}"/>
+        </TextBlock>
 
-        <ComboBox x:Name="cmb_delivery" ItemsSource="{Binding ProfileCaretaker.Profiles, Mode=OneWay}"  Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SelectedIndex="0" >
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding ProfileId}"></TextBlock>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        <ComboBox x:Name="cmb_delivery" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SelectedIndex="0" />
+        <Button x:Name="btn_completeOrder" Grid.Row="4" Grid.Column="5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Content="Bestellen" Click="Btn_completeOrder_OnClick"/>
 
     </Grid>
 </Page>

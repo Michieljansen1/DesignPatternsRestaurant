@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Restaurant.Memento
@@ -51,11 +50,19 @@ namespace Restaurant.Memento
         public ObservableCollection<ProfileMemento> Profiles => _profiles;
 
         /// <summary>
-        ///     Clears all the profiles from the system
+        ///     Removes all the profiles except the first. The first profile only gets cleared.
         /// </summary>
         public void Clear()
         {
-            _profiles.Clear();
+            if (_profiles.Count > 1) // There are multiple profiles
+            {
+                for (int i = 0; i < _profiles.Count -1; i++) // Looping over each extra profile (not the first one)
+                {
+                    _profiles.RemoveAt(_profiles.Count -1); // Removing the last profile in the list
+                }
+            }
+
+            _profiles[0].Items.Clear(); // Clearing the item list of the first profile
         }
     }
 }

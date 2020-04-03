@@ -3,9 +3,9 @@ namespace Restaurant.Models
 {
     public class Delivery : Order
     {
-        public override string DeliveryType(string deliveryType)
+        public override string DeliveryType(Types.DeliveryType deliveryType)
         {
-            if (deliveryType == "ToCounter")
+            if (deliveryType == Types.DeliveryType.TO_COUNTER)
             {
                 return "Please wait for your food at the counter";
             }

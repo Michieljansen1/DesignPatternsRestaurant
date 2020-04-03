@@ -1,6 +1,7 @@
 ﻿using Restaurant.Models;
 using System;
 using System.Collections.Generic;
+using Restaurant.Memento;
 
 
 namespace Restaurant.Builders
@@ -26,7 +27,7 @@ namespace Restaurant.Builders
         /// This is an easier implementation, so the ordermachine 
         /// does not have to make a builder and bill separately
         /// </summary>
-        public void BuildAnalogBill(DateTime dateTime, List<Profile> profiles, int totalPrice, string location, string address)
+        public void BuildAnalogBill(DateTime dateTime, List<ProfileMemento> profiles, double totalPrice, string location, string address)
         {
             _billBuilder.SetDate(dateTime);
             _billBuilder.SetProfiles(profiles);
@@ -40,7 +41,7 @@ namespace Restaurant.Builders
         /// This is an easier implementation, so the ordermachine 
         /// does not have to make a builder and bill separately
         /// </summary>
-        public void BuildDigitalBill(DateTime dateTime, List<Profile> profiles, int totalPrice, string location, string address, string email)
+        public void BuildDigitalBill(DateTime dateTime, List<ProfileMemento> profiles, double totalPrice, string location, string address, string email)
         {
             _billBuilder.SetDate(dateTime);
             _billBuilder.SetProfiles(profiles);

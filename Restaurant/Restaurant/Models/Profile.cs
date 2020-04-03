@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Restaurant.Memento;
 using Restaurant.Types;
 
@@ -41,7 +42,9 @@ namespace Restaurant.Models
         /// <returns>Memento object</returns>
         public ProfileMemento MakeMemento()
         {
-            return new ProfileMemento(Id, _menuItems);
+            List<IMenu> list = new List<IMenu>();
+            list.AddRange(_menuItems);
+            return new ProfileMemento(Id, list);
         }
 
         /// <summary>
@@ -51,7 +54,12 @@ namespace Restaurant.Models
         public void LoadMemento(ProfileMemento memento)
         {
             Id = memento.ProfileId;
-            _menuItems = memento.Items;
+            _menuItems.Clear();
+            foreach (IMenu mementoItem in memento.Items)
+            {
+                _menuItems.Add(mementoItem);
+            }
+            Debug.WriteLine($"Loaded profile: {memento.ProfileId}");
         }
     }
 }

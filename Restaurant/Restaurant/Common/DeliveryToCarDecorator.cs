@@ -1,5 +1,6 @@
 ﻿using Restaurant.Decorators;
 using Restaurant.Models;
+using Restaurant.Types;
 
 namespace Restaurant.Common
 {
@@ -9,15 +10,11 @@ namespace Restaurant.Common
         {
 
         }
-        public override string DeliveryType(string deliveryType)
+        public override string DeliveryType(DeliveryType deliveryType)
         {
-            if(deliveryType == "ToCarA")
+            if(deliveryType == Types.DeliveryType.TO_CAR_A)
             {
                 return "The food will be send to your car on parking lot A";
-            }
-            else if (deliveryType == "ToCarB")
-            {
-                return "The food will be send to your car on parking lot B.";
             }
             else
             {

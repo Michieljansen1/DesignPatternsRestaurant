@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Restaurant.Models;
 
 namespace Restaurant.Memento
@@ -13,13 +14,13 @@ namespace Restaurant.Memento
         /// </summary>
         /// <param name="profileId">Id that makes the profile unique</param>
         /// <param name="items">List of menu items to save</param>
-        public ProfileMemento(int profileId, ObservableCollection<IMenu> items)
+        public ProfileMemento(int profileId, List<IMenu> items)
         {
             ProfileId = profileId;
             Items = items;
         }
 
         public int ProfileId { get; }
-        public ObservableCollection<IMenu> Items { get; set; }
+        public List<IMenu> Items { get; set; }
     }
 }

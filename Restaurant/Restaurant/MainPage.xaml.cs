@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using Windows.UI.Text;
@@ -7,6 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Restaurant.Common;
 using Restaurant.Factories;
+using Restaurant.Memento;
 using Restaurant.Models;
 using Restaurant.Types;
 
@@ -34,46 +36,9 @@ namespace Restaurant
             cmb_drinkTypes.ItemsSource = Enum.GetValues(typeof(DrinkType)).Cast<DrinkType>();
             cmb_sideType.ItemsSource = Enum.GetValues(typeof(SideType)).Cast<SideType>();
             cmb_sizeType.ItemsSource = Enum.GetValues(typeof(SizeType)).Cast<SizeType>();
-
-            List<IMenu> menus = new List<IMenu>();
-
-            var menu1 = new DishFactory(
-                MenuType.WrapMenu, 
-                DrinkType.ColaZero,
-                SideType.Fries, 
-                MainDishType.ChickenWrap, 
-                SizeType.Large)
-                .CreateMenu();
-
-            var menu2 = new DishFactory(
-                    MenuType.BurgerMenu,
-                    DrinkType.Cola,
-                    SideType.Fries,
-                    MainDishType.BaconBurger,
-                    SizeType.Large)
-                .CreateMenu();
-
-            var menu3 = new DishFactory(
-                    MenuType.JuniorMenu,
-                    DrinkType.Cola,
-                    SideType.Fries,
-                    MainDishType.JuniorBurger,
-                    SizeType.Large)
-                .CreateMenu();
-
-
-            menus.Add(menu1);
-            menus.Add(menu2);
-            menus.Add(menu3);
-
-
-
-            foreach (var menu in menus)
-            {
-                Debug.WriteLine("Menu type:" + menu.GetMenuType());
-                Debug.WriteLine("Price" + menu.GetTotalPrice());
-            }
+            cmb_delivery.ItemsSource = Enum.GetValues(typeof(DeliveryType)).Cast<DeliveryType>();
         }
+
 
         private void Btn_addMenu_OnClick(object sender, RoutedEventArgs e)
         {
@@ -87,13 +52,17 @@ namespace Restaurant
 
         private void Cmb_profile_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var profile = (Profile)cmb_profile.SelectionBoxItem;
-            
+            var profile = cmb_profile.Items?[cmb_profile.SelectedIndex];
 
             if (profile != null)
             {
-                _orderMachine.SwitchProfile(profile.Id);
+                _orderMachine.SwitchProfile(((ProfileMemento)profile).ProfileId);
             }
+        }
+
+        private void Btn_completeOrder_OnClick(object sender, RoutedEventArgs e)
+        {
+            _orderMachine.Finish((DeliveryType)cmb_delivery.SelectionBoxItem);
         }
     }
 }

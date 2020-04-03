@@ -34,10 +34,14 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind GetMenuType()}" FontSize="12" HorizontalAlignment="Stretch"/>
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind GetDrinkType()}" FontSize="12" HorizontalAlignment="Stretch"/>
-                        <TextBlock Grid.Row="0" Grid.Column="2" Text="{x:Bind GetSideType()}" FontSize="12" HorizontalAlignment="Stretch"/>
-                        <TextBlock Grid.Row="0" Grid.Column="3" Text="{x:Bind GetSizeType()}" FontSize="12" HorizontalAlignment="Stretch"/>
-                        <TextBlock Grid.Row="0" Grid.Column="4" Text="{x:Bind GetTotalPrice()}" FontSize="12" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind GetMainType()}" FontSize="12" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="{x:Bind GetDrinkType()}" FontSize="12" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="{x:Bind GetSideType()}" FontSize="12" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="0" Grid.Column="4" Text="{x:Bind GetSizeType()}" FontSize="12" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="0" Grid.Column="5" FontSize="12" HorizontalAlignment="Stretch">
+                            <Run Text="{x:Bind GetTotalPrice()}"/>
+                            <Run Text="euro"/>
+                        </TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

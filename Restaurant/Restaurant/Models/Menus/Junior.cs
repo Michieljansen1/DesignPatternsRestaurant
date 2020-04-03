@@ -11,6 +11,8 @@ namespace Restaurant.Models.Menus
     {
         private readonly DrinkType _drink;
 
+        private readonly MainDishType _main;
+
         private readonly SideType _side;
 
         private readonly SizeType _size;
@@ -28,6 +30,9 @@ namespace Restaurant.Models.Menus
         }
 
         public MenuType GetMenuType() => MenuType.JuniorMenu;
+
+        // <inheritdoc />
+        public MainDishType GetMainType() => _main;
 
         // <inheritdoc />
         public DrinkType GetDrinkType() => _drink;

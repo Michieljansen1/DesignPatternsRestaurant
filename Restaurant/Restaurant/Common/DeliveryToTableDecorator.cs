@@ -1,5 +1,6 @@
 ﻿using Restaurant.Decorators;
 using Restaurant.Models;
+using Restaurant.Types;
 
 namespace Restaurant.Common
 {
@@ -8,15 +9,11 @@ namespace Restaurant.Common
         public DeliveryToTableDecorator(Order order): base(order)
         {
         }
-        public override string DeliveryType(string deliveryType)
+        public override string DeliveryType(DeliveryType deliveryType)
         {
-            if (deliveryType == "ToTableInside")
+            if (deliveryType == Types.DeliveryType.TO_TABLE_INSIDE)
             {
                 return "The food will be send to your table inside.";
-            }
-            else if (deliveryType == "ToTableOutside")
-            {
-                return "The food will be send to your table outside.";
             }
             else
             {

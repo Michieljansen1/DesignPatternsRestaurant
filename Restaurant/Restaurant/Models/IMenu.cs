@@ -19,6 +19,12 @@ namespace Restaurant.Models
         MenuType GetMenuType();
 
         /// <summary>
+        /// Gets the main dish type
+        /// </summary>
+        /// <returns>Returns <see cref="SizeType"/> of the current size</returns>
+        MainDishType GetMainType();
+
+        /// <summary>
         /// Gets the drink type
         /// </summary>
         /// <returns>Returns <see cref="DrinkType"/> of the current drink</returns>
