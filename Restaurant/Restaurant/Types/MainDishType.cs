@@ -2,7 +2,7 @@
 
 namespace Restaurant.Types
 {
-    public enum BurgerType
+    public enum MainDishType
     {
         [MenuPrice(1)]
         CheeseBurger,
@@ -11,6 +11,15 @@ namespace Restaurant.Types
         JuniorBurger,
 
         [MenuPriceAttribute(2.50)]
-        BaconBurger
+        BaconBurger,
+
+        [MenuPrice(1.50)]
+        ChickenWrap,
+
+        [MenuPriceAttribute(1)]
+        JuniorWrap,
+
+        [MenuPriceAttribute(1.50)]
+        PorkWrap
     }
 }

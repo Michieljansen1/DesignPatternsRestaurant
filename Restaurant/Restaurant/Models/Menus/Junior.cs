@@ -18,7 +18,7 @@ namespace Restaurant.Models.Menus
         private readonly double _price;
 
 
-        public Junior(DrinkType drink, SideType side, T main, double price)
+        public Junior(DrinkType drink, SideType side, T main, SizeType _selectedSize, double price)
         {
             _drink = drink;
             _side = side;
