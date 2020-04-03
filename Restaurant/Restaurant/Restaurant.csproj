@@ -143,7 +143,6 @@
     <Compile Include="Memento\ProfileManagerMemento.cs" />
     <Compile Include="Models\Delivery.cs" />
     <Compile Include="Models\IMenu.cs" />
-    <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\Menus\Burger.cs" />
     <Compile Include="Models\Menus\Junior.cs" />
     <Compile Include="Models\Menus\Wrap.cs" />
