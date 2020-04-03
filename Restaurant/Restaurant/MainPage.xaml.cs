@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Restaurant.Factories;
+using Restaurant.Models.Menus;
 using Restaurant.Types;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -29,12 +30,15 @@ namespace Restaurant
         {
             this.InitializeComponent();
 
-            var burger = new BurgerFactory(DrinkType.Cola, SideType.Fries, BurgerType.BaconBurger, SizeType.Large).CreateMenu();
+            var menu = new BurgerFactory(DrinkType.Cola, SideType.Fries, BurgerType.BaconBurger, SizeType.Large).CreateMenu();
+            var junior = new JuniorFactory<BurgerType>(DrinkType.Sinas, SideType.Fries, BurgerType.JuniorBurger).CreateMenu();
 
-            if (burger != null)
+            if (junior != null)
             {
-                Debug.WriteLine($"Menu Type: {burger.GetMenuType()}");
-                Debug.WriteLine($"Menu Price: {burger.GetTotalPrice()}");
+                Debug.WriteLine($"Menu Type: {junior.GetMenuType()}");
+                Debug.WriteLine($"Menu Price: {junior.GetTotalPrice()}");
+                Debug.WriteLine($"Menu Price: {junior.GetSideType()}");
+                Debug.WriteLine($"Menu Price: {junior.GetDrinkType()}");
             }
         }
     }

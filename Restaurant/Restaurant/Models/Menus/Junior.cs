@@ -26,34 +26,21 @@ namespace Restaurant.Models.Menus
             _price = price;
         }
 
-        public MenuType GetMenuType()
-        {
-            throw new NotImplementedException();
-        }
+        public MenuType GetMenuType() => MenuType.JuniorMenu;
 
-        public DrinkType GetDrinkType()
-        {
-            throw new NotImplementedException();
-        }
+        // <inheritdoc />
+        public DrinkType GetDrinkType() => _drink;
 
-        public SideType GetSideType()
-        {
-            throw new NotImplementedException();
-        }
+        // <inheritdoc />
+        public SideType GetSideType() => _side;
 
-        public T GetMainType()
-        {
-            throw new NotImplementedException();
-        }
+        // <inheritdoc />
+        public T GetMainType() => _main;
 
-        public SizeType GetSizeType()
-        {
-            throw new NotImplementedException();
-        }
+        // <inheritdoc />
+        public SizeType GetSizeType() => SizeType.Small;
 
-        public double GetTotalPrice()
-        {
-            throw new NotImplementedException();
-        }
+        // <inheritdoc />
+        public double GetTotalPrice() => _price;
     }
 }
