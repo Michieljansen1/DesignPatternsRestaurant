@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Restaurant.Models
+namespace Restaurant.Types
 {
-    class Menu
+    public enum MenuType
     {
+        BurgerMenu,
+        WrapMenu,
+        JuniorMenu
     }
 }

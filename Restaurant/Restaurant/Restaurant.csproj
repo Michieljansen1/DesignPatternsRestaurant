@@ -119,6 +119,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Attributes\MenuPriceAttribute.cs" />
+    <Compile Include="Attributes\MenuRestrictionAttribute.cs" />
     <Compile Include="Builders\AnalogBillBuilder.cs" />
     <Compile Include="Builders\BillBuilder.cs" />
     <Compile Include="Builders\BillDirector.cs" />
@@ -129,21 +131,34 @@
     <Compile Include="Common\DigitalBill.cs" />
     <Compile Include="Common\OrderMachine.cs" />
     <Compile Include="Decorators\DeliveryDecorator.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Factories\BurgerFactory.cs" />
+    <Compile Include="Factories\JuniorFactory.cs" />
     <Compile Include="Factories\MenuFactory.cs" />
+    <Compile Include="Factories\WrapFactory.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Memento\ProfileCaretaker.cs" />
     <Compile Include="Memento\ProfileManagerMemento.cs" />
     <Compile Include="Models\Delivery.cs" />
-    <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\IMenu.cs" />
     <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="Models\Menus\Burger.cs" />
     <Compile Include="Models\Menus\BurgerMenu.cs" />
+    <Compile Include="Models\Menus\Junior.cs" />
     <Compile Include="Models\Menus\JuniorMenu.cs" />
+    <Compile Include="Models\Menus\Wrap.cs" />
     <Compile Include="Models\Menus\WrapMenu.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\BurgerType.cs" />
+    <Compile Include="Types\DrinkType.cs" />
+    <Compile Include="Types\MenuType.cs" />
+    <Compile Include="Types\SideType.cs" />
+    <Compile Include="Types\SizeType.cs" />
+    <Compile Include="Types\WrapType.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
