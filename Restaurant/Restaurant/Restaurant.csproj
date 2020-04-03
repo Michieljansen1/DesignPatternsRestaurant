@@ -120,7 +120,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Attributes\MenuPriceAttribute.cs" />
-    <Compile Include="Attributes\MenuRestrictionAttribute.cs" />
     <Compile Include="Builders\AnalogBillBuilder.cs" />
     <Compile Include="Builders\BillBuilder.cs" />
     <Compile Include="Builders\BillDirector.cs" />
