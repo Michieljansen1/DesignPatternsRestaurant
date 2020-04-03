@@ -34,6 +34,7 @@ namespace Restaurant
             if (burger != null)
             {
                 Debug.WriteLine($"Menu Type: {burger.GetMenuType()}");
+                Debug.WriteLine($"Menu Price: {burger.GetTotalPrice()}");
             }
         }
     }
