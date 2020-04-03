@@ -11,7 +11,7 @@ using Restaurant.Types;
 
 namespace Restaurant.Factories
 {
-    public class WrapFactory : MenuFactory<WrapType>
+    public class WrapFactory : MenuFactory<MainDishType>
     {
         /// <summary>
         /// The selected drink
@@ -26,7 +26,7 @@ namespace Restaurant.Factories
         /// <summary>
         /// The selected wrap main meal 
         /// </summary>
-        private readonly WrapType _selectedMain;
+        private readonly MainDishType _selectedMain;
 
         /// <summary>
         /// The selected menu size
@@ -43,9 +43,9 @@ namespace Restaurant.Factories
         /// </summary>
         /// <param name="drink">The <see cref="DrinkType"/> of the selected drink</param>
         /// <param name="side">The <see cref="SideType"/> of the selected side</param>
-        /// <param name="main">The <see cref="WrapType"/> of the selected wrap</param>
+        /// <param name="main">The <see cref="MainDishType"/> of the selected wrap</param>
         /// <param name="size">The <see cref="SizeType"/> of the selected menu size</param>
-        public WrapFactory(DrinkType drink, SideType side, WrapType main, SizeType size)
+        public WrapFactory(DrinkType drink, SideType side, MainDishType main, SizeType size)
         {
             _selectedDrink = drink;
             ApplyItemPrice(drink);
@@ -60,7 +60,7 @@ namespace Restaurant.Factories
         }
 
         // <inheritdoc />
-        protected override IMenu<WrapType> ConstuctMenu()
+        protected override IMenu<MainDishType> ConstuctMenu()
         {
             return new Wrap(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
         }
