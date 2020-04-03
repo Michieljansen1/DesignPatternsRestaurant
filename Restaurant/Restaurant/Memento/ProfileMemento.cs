@@ -9,6 +9,11 @@ namespace Restaurant.Memento
     /// </summary>
     internal class ProfileMemento
     {
+        /// <summary>
+        ///     Constructor
+        /// </summary>
+        /// <param name="profileId">Id that makes the profile unique</param>
+        /// <param name="items">List of menu items to save</param>
         public ProfileMemento(int profileId, ObservableCollection<IMenu<MainDishType>> items)
         {
             ProfileId = profileId;

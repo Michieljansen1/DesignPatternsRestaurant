@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
 using Restaurant.Memento;
 using Restaurant.Types;
 
@@ -10,27 +9,19 @@ namespace Restaurant.Models
     /// </summary>
     internal class Profile
     {
-        private int _id;
-
         /// <summary>
         ///     Constructor
         /// </summary>
-        public Profile(int Id)
+        /// <param name="id">Profile Id</param>
+        public Profile(int id)
         {
-            _id = Id;
+            Id = id;
             _menuItems = new ObservableCollection<IMenu<MainDishType>>();
         }
 
-        public int Id
-        {
-            get => _id;
-            set => _id = value;
-        }
+        public int Id { get; set; }
 
-        public ObservableCollection<IMenu<MainDishType>> ItemCollection
-        {
-            get { return _menuItems; }
-        }
+        public ObservableCollection<IMenu<MainDishType>> ItemCollection => _menuItems;
 
         private ObservableCollection<IMenu<MainDishType>> _menuItems { get; set; }
 
@@ -43,23 +34,23 @@ namespace Restaurant.Models
             _menuItems.Add(menu);
         }
 
+        /// <summary>
+        ///     Creates a new Memento object that can be saved with the ProfileCareTaker
+        /// </summary>
+        /// <returns>Memento object</returns>
         public ProfileMemento StoreInMemento()
         {
             return new ProfileMemento(Id, _menuItems);
         }
 
+        /// <summary>
+        ///     Loads the profile with the given memento object
+        /// </summary>
+        /// <param name="memento">Memento object to load</param>
         public void LoadMemento(ProfileMemento memento)
         {
-            _id = memento.ProfileId;
+            Id = memento.ProfileId;
             _menuItems = memento.Items;
-        }
-
-        public void Print()
-        {
-            foreach (var menu in _menuItems)
-            {
-                Debug.WriteLine($"Menu: {menu.GetMenuType()}");
-            }
         }
     }
 }
