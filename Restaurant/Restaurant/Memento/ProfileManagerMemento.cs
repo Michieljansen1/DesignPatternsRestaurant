@@ -9,5 +9,10 @@ namespace Restaurant.Memento
     {
         private Profile _profile;
 
+        public Profile Profile
+        {
+            get { return _profile; }
+            set { _profile = value; }
+        }
     }
 }
