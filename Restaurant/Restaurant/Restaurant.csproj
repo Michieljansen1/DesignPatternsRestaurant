@@ -125,8 +125,8 @@
     <Compile Include="Builders\BillDirector.cs" />
     <Compile Include="Builders\DigitalBillBuilder.cs" />
     <Compile Include="Common\AnalogBill.cs" />
-    <Compile Include="Common\DeliveryToCar.cs" />
-    <Compile Include="Common\DeliveryToTable.cs" />
+    <Compile Include="Common\DeliveryToCarDecorator.cs" />
+    <Compile Include="Common\DeliveryToTableDecorator.cs" />
     <Compile Include="Common\DigitalBill.cs" />
     <Compile Include="Common\OrderMachine.cs" />
     <Compile Include="Decorators\DeliveryDecorator.cs" />
