@@ -132,6 +132,8 @@
     <Compile Include="Common\OrderMachine.cs" />
     <Compile Include="Decorators\DeliveryDecorator.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Factories\BurgerFactory.cs" />
+    <Compile Include="Factories\JuniorFactory.cs" />
     <Compile Include="Factories\MenuFactory.cs" />
     <Compile Include="Factories\WrapFactory.cs" />
     <Compile Include="MainPage.xaml.cs">

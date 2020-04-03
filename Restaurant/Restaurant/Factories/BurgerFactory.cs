@@ -11,7 +11,7 @@ using Restaurant.Types;
 
 namespace Restaurant.Factories
 {
-    public class WrapFactory : MenuFactory<WrapType>
+    public class BurgerFactory : MenuFactory<BurgerType>
     {
         /// <summary>
         /// The selected drink
@@ -24,9 +24,9 @@ namespace Restaurant.Factories
         private readonly SideType _selectedSide;
 
         /// <summary>
-        /// The selected wrap main meal 
+        /// The selected burger main dish
         /// </summary>
-        private readonly WrapType _selectedMain;
+        private readonly BurgerType _selectedMain;
 
         /// <summary>
         /// The selected menu size
@@ -39,13 +39,13 @@ namespace Restaurant.Factories
         private double _price;
 
         /// <summary>
-        /// Intializes a new instance of <see cref="WrapFactory"/>
+        /// Intializes a new instance of <see cref="BurgerFactory"/>
         /// </summary>
         /// <param name="drink">The <see cref="DrinkType"/> of the selected drink</param>
         /// <param name="side">The <see cref="SideType"/> of the selected side</param>
-        /// <param name="main">The <see cref="WrapType"/> of the selected wrap</param>
+        /// <param name="main">The <see cref="BurgerType"/> of the selected burger</param>
         /// <param name="size">The <see cref="SizeType"/> of the selected menu size</param>
-        public WrapFactory(DrinkType drink, SideType side, WrapType main, SizeType size)
+        public BurgerFactory(DrinkType drink, SideType side, BurgerType main, SizeType size)
         {
             _selectedDrink = drink;
             ApplyItemPrice(drink);
@@ -60,9 +60,9 @@ namespace Restaurant.Factories
         }
 
         // <inheritdoc />
-        protected override IMenu<WrapType> ConstuctMenu()
+        protected override IMenu<BurgerType> ConstuctMenu()
         {
-            return new Wrap(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
+            return new Burger(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
         }
 
         /// <summary>

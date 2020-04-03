@@ -11,10 +11,10 @@ using Restaurant.Types;
 
 namespace Restaurant.Factories
 {
-    public class WrapFactory : MenuFactory<WrapType>
+    public class JuniorFactory<T> : MenuFactory<T> where T : Enum
     {
         /// <summary>
-        /// The selected drink
+        /// The <see cref="DrinkType"/>
         /// </summary>
         private readonly DrinkType _selectedDrink;
 
@@ -24,14 +24,9 @@ namespace Restaurant.Factories
         private readonly SideType _selectedSide;
 
         /// <summary>
-        /// The selected wrap main meal 
+        /// The selected main dish
         /// </summary>
-        private readonly WrapType _selectedMain;
-
-        /// <summary>
-        /// The selected menu size
-        /// </summary>
-        private readonly SizeType _selectedSize;
+        private readonly T _selectedMain;
 
         /// <summary>
         /// The total price of all items
@@ -39,14 +34,19 @@ namespace Restaurant.Factories
         private double _price;
 
         /// <summary>
-        /// Intializes a new instance of <see cref="WrapFactory"/>
+        /// Intializes a new instance of <see cref="JuniorFactory{T}"/>
+        /// NOTE: Junior meals are always <see cref="SizeType.Small"/>
         /// </summary>
         /// <param name="drink">The <see cref="DrinkType"/> of the selected drink</param>
         /// <param name="side">The <see cref="SideType"/> of the selected side</param>
-        /// <param name="main">The <see cref="WrapType"/> of the selected wrap</param>
-        /// <param name="size">The <see cref="SizeType"/> of the selected menu size</param>
-        public WrapFactory(DrinkType drink, SideType side, WrapType main, SizeType size)
+        /// <param name="main">The <see cref="T"/> of the selected junior main</param>
+        public JuniorFactory(DrinkType drink, SideType side, T main)
         {
+            if (main.GetCustomAttribute<MenuRestrictionAttribute>()?.Type != MenuType.JuniorMenu)
+            {
+                throw new Exception($"Menu item '{main}' is not on the junior menu");
+            }
+
             _selectedDrink = drink;
             ApplyItemPrice(drink);
 
@@ -55,14 +55,12 @@ namespace Restaurant.Factories
 
             _selectedMain = main;
             ApplyItemPrice(main);
-
-            _selectedSize = size;
         }
 
         // <inheritdoc />
-        protected override IMenu<WrapType> ConstuctMenu()
+        protected override IMenu<T> ConstuctMenu()
         {
-            return new Wrap(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
+            return new Junior<T>(_selectedDrink, _selectedSide, _selectedMain, _price);
         }
 
         /// <summary>
