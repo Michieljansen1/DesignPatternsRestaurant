@@ -138,6 +138,9 @@
     </Compile>
     <Compile Include="Memento\ProfileCaretaker.cs" />
     <Compile Include="Memento\ProfileMemento.cs" />
+    <Compile Include="MenuViewer.xaml.cs">
+      <DependentUpon>MenuViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Delivery.cs" />
     <Compile Include="Models\IMenu.cs" />
@@ -176,6 +179,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MenuViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

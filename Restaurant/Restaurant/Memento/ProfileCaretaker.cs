@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Restaurant.Memento
@@ -10,14 +11,14 @@ namespace Restaurant.Memento
     /// </summary>
     internal class ProfileCaretaker
     {
-        private readonly List<ProfileMemento> _profiles; // List of memento's to save
+        private readonly ObservableCollection<ProfileMemento> _profiles; // List of memento's to save
 
         /// <summary>
         ///     Constructor
         /// </summary>
         public ProfileCaretaker()
         {
-            _profiles = new List<ProfileMemento>();
+            _profiles = new ObservableCollection<ProfileMemento>();
         }
 
         /// <summary>
@@ -46,6 +47,8 @@ namespace Restaurant.Memento
         }
 
         public int TotalProfiles => _profiles.Count;
+
+        public ObservableCollection<ProfileMemento> Profiles => _profiles;
 
         /// <summary>
         ///     Clears all the profiles from the system

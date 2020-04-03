@@ -19,6 +19,7 @@ namespace Restaurant.Common
         /// <param name="orderType"></param>
         public OrderMachine(string orderType = null)
         {
+            _profileCaretaker = new ProfileCaretaker();
             NewProfile();
         }
 
@@ -63,7 +64,12 @@ namespace Restaurant.Common
         public void NewProfile()
         {
             _activeProfile = new Profile(_profileCaretaker.TotalProfiles);
+            _profileCaretaker.AddOrUpdateProfile(_activeProfile.MakeMemento());
+            //TODO: remove TEST
+            AddProductToProfile(MenuType.BurgerMenu, DrinkType.Cola, SideType.Fries, MainDishType.BaconBurger, SizeType.Large);
         }
+
+        public Profile ActiveProfile => _activeProfile;
 
         /// <summary>
         ///     Finalizes the current order
@@ -74,5 +80,7 @@ namespace Restaurant.Common
 
             _profileCaretaker.Clear();
         }
+
+        public ProfileCaretaker ProfileCaretaker => _profileCaretaker;
     }
 }
