@@ -24,7 +24,7 @@ namespace Restaurant.Memento
         ///     Adds / saves a new profile to the system
         /// </summary>
         /// <param name="profile">Profile to add</param>
-        public void AddProfile(ProfileMemento profile)
+        public void AddOrUpdateProfile(ProfileMemento profile)
         {
             var existingProfile = _profiles.FirstOrDefault(p => p.ProfileId == profile.ProfileId);
 
@@ -44,6 +44,8 @@ namespace Restaurant.Memento
         {
             return _profiles.First(p => p.ProfileId == Id);
         }
+
+        public int TotalProfiles => _profiles.Count;
 
         /// <summary>
         ///     Clears all the profiles from the system

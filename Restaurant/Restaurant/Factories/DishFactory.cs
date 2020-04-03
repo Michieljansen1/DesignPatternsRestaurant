@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Restaurant.Attributes;
 using Restaurant.Extensions;
 using Restaurant.Models;
@@ -11,11 +7,7 @@ using Restaurant.Types;
 
 namespace Restaurant.Factories
 {
-
-    /// <summary>
-    /// Class for burger type, accepts Burgertype enums
-    /// </summary>
-    public class BurgerFactory : MenuFactory<MainDishType>
+    public class DishFactory : MenuFactory<MainDishType>
     {
         /// <summary>
         /// The selected drink
@@ -38,19 +30,20 @@ namespace Restaurant.Factories
         private readonly SizeType _selectedSize;
 
         /// <summary>
+        /// The selected menu type
+        /// </summary>
+        private readonly MenuType _menuType;
+
+        /// <summary>
         /// The total price of all items
         /// </summary>
         private double _price;
 
-        /// <summary>
-        /// Intializes a new instance of <see cref="BurgerFactory"/>
-        /// </summary>
-        /// <param name="drink">The <see cref="DrinkType"/> of the selected drink</param>
-        /// <param name="side">The <see cref="SideType"/> of the selected side</param>
-        /// <param name="main">The <see cref="MainDishType"/> of the selected burger</param>
-        /// <param name="size">The <see cref="SizeType"/> of the selected menu size</param>
-        public BurgerFactory(DrinkType drink, SideType side, MainDishType main, SizeType size)
+
+        public DishFactory(MenuType menu, DrinkType drink, SideType side, MainDishType main, SizeType size)
         {
+            _menuType = menu;
+
             _selectedDrink = drink;
             ApplyItemPrice(drink);
 
@@ -60,13 +53,27 @@ namespace Restaurant.Factories
             _selectedMain = main;
             ApplyItemPrice(main);
 
+
             _selectedSize = size;
         }
 
-        // <inheritdoc />
         protected override IMenu<MainDishType> ConstuctMenu()
         {
-            return new Burger(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
+            switch (_menuType)
+            {
+                case MenuType.BurgerMenu:
+                    return new Burger(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
+
+                case MenuType.WrapMenu:
+                    return new Wrap(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
+
+                case MenuType.JuniorMenu:
+                    return new Junior<MainDishType>(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
+
+
+            }
+
+            return null;
         }
 
         /// <summary>

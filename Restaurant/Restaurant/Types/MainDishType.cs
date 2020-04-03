@@ -17,7 +17,6 @@ namespace Restaurant.Types
         ChickenWrap,
 
         [MenuPriceAttribute(1)]
-        [MenuRestrictionAttribute(MenuType.JuniorMenu)]
         JuniorWrap,
 
         [MenuPriceAttribute(1.50)]

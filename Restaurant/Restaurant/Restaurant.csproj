@@ -120,7 +120,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Attributes\MenuPriceAttribute.cs" />
-    <Compile Include="Attributes\MenuRestrictionAttribute.cs" />
     <Compile Include="Builders\AnalogBillBuilder.cs" />
     <Compile Include="Builders\BillBuilder.cs" />
     <Compile Include="Builders\BillDirector.cs" />
@@ -132,10 +131,8 @@
     <Compile Include="Common\OrderMachine.cs" />
     <Compile Include="Decorators\DeliveryDecorator.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Factories\BurgerFactory.cs" />
-    <Compile Include="Factories\JuniorFactory.cs" />
+    <Compile Include="Factories\DishFactory.cs" />
     <Compile Include="Factories\MenuFactory.cs" />
-    <Compile Include="Factories\WrapFactory.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

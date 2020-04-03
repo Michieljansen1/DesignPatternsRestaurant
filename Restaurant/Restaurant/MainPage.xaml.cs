@@ -34,20 +34,41 @@ namespace Restaurant
 
             List<IMenu<MainDishType>> menus = new List<IMenu<MainDishType>>();
 
+            var menu1 = new DishFactory(
+                MenuType.WrapMenu, 
+                DrinkType.ColaZero,
+                SideType.Fries, 
+                MainDishType.ChickenWrap, 
+                SizeType.Large)
+                .CreateMenu();
 
-            var burgerMenu = new BurgerFactory(DrinkType.Cola, SideType.Fries, MainDishType.BaconBurger, SizeType.Large).CreateMenu();
-            var junior = new JuniorFactory<MainDishType>(DrinkType.Sinas, SideType.Fries, MainDishType.JuniorBurger).CreateMenu();
-            var wrap = new WrapFactory(DrinkType.Cola, SideType.Salad, MainDishType.ChickenWrap, SizeType.Large).CreateMenu();
+            var menu2 = new DishFactory(
+                    MenuType.BurgerMenu,
+                    DrinkType.Cola,
+                    SideType.Fries,
+                    MainDishType.BaconBurger,
+                    SizeType.Large)
+                .CreateMenu();
 
-            menus.Add(burgerMenu);
+            var menu3 = new DishFactory(
+                    MenuType.JuniorMenu,
+                    DrinkType.Cola,
+                    SideType.Fries,
+                    MainDishType.JuniorBurger,
+                    SizeType.Large)
+                .CreateMenu();
 
-            menus.Add(junior);
 
-            menus.Add(wrap);
+            menus.Add(menu1);
+            menus.Add(menu2);
+            menus.Add(menu3);
+
+
 
             foreach (var menu in menus)
             {
-                Debug.WriteLine("Maindish:" + menu.GetMainType());
+                Debug.WriteLine("Menu type:" + menu.GetMenuType());
+                Debug.WriteLine("Food:" + menu.GetMainType());
                 Debug.WriteLine("Price" + menu.GetTotalPrice());
             }
         }
