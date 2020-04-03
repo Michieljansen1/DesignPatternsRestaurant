@@ -23,7 +23,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ComboBox ItemsSource="{Binding ProfileCaretaker.Profiles, Mode=OneWay}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch">
+        <ComboBox x:Name="cmb_profile" ItemsSource="{Binding ProfileCaretaker.Profiles, Mode=OneWay}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" SelectedIndex="0" SelectionChanged="Cmb_profile_OnSelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding ProfileId}"></TextBlock>
@@ -31,12 +31,12 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <ComboBox x:Name="cmb_menuTypes" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch"/>
-        <ComboBox x:Name="cmb_mainDish" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"/>
-        <ComboBox x:Name="cmb_drinkTypes" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch"/>
-        <ComboBox x:Name="cmb_sideType" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch"/>
-        <ComboBox x:Name="cmb_sizeType" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch"/>
-        <Button x:Name="btn_addMenu" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Stretch" Content="Toevoegen"/>
+        <ComboBox x:Name="cmb_menuTypes" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" SelectedIndex="0"/>
+        <ComboBox x:Name="cmb_mainDish" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" SelectedIndex="0"/>
+        <ComboBox x:Name="cmb_drinkTypes" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" SelectedIndex="0"/>
+        <ComboBox x:Name="cmb_sideType" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" SelectedIndex="0"/>
+        <ComboBox x:Name="cmb_sizeType" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch" SelectedIndex="0"/>
+        <Button x:Name="btn_addMenu" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Stretch" Content="Toevoegen" Click="Btn_addMenu_OnClick"/>
 
         <local:MenuViewer x:Name="lst_menus" DataContext="{Binding ActiveProfile.ItemCollection, Mode=OneWay}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5"></local:MenuViewer>
     </Grid>

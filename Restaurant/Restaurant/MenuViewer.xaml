@@ -8,18 +8,38 @@
     xmlns:models="using:Restaurant.Models"
     xmlns:types="using:Restaurant.Types"
     xmlns:menus="using:Restaurant.Models.Menus"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    mc:Ignorable="d">
 
     <Grid>
-        <ListView ItemsSource="{Binding}">
+        <ListView ItemsSource="{Binding}" HorizontalAlignment="Stretch">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"  Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
-                <!-- <DataTemplate x:DataType="models:"> -->
-                <!--     <Grid> -->
-                <!--         <TextBlock Text="test" FontSize="12"/> -->
-                <!--     </Grid> -->
-                <!-- </DataTemplate> -->
+                <DataTemplate x:DataType="models:IMenu">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind GetMenuType()}" FontSize="12" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind GetDrinkType()}" FontSize="12" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="{x:Bind GetSideType()}" FontSize="12" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="{x:Bind GetSizeType()}" FontSize="12" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="0" Grid.Column="4" Text="{x:Bind GetTotalPrice()}" FontSize="12" HorizontalAlignment="Stretch"/>
+                    </Grid>
+                </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </Grid>

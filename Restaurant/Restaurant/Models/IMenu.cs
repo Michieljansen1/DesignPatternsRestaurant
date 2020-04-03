@@ -29,12 +29,6 @@ namespace Restaurant.Models
         /// </summary>
         /// <returns>Returns <see cref="SideType"/> of the current side</returns>
         SideType GetSideType();
-        //
-        // /// <summary>
-        // /// Gets the main type
-        // /// </summary>
-        // /// <returns>Returns <see cref="T"/> of the current main</returns>
-        // T GetMainType();
 
         /// <summary>
         /// Gets the size type

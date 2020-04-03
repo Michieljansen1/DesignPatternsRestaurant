@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Windows.UI.Text;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Restaurant.Common;
 using Restaurant.Factories;
@@ -17,12 +19,15 @@ namespace Restaurant
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+        private OrderMachine _orderMachine;
+
         public MainPage()
         {
             this.InitializeComponent();
 
-            var orderMachine = new OrderMachine();
-            DataContext = orderMachine;
+            _orderMachine = new OrderMachine();
+            DataContext = _orderMachine;
 
             cmb_menuTypes.ItemsSource = Enum.GetValues(typeof(MenuType)).Cast<MenuType>();
             cmb_mainDish.ItemsSource = Enum.GetValues(typeof(MainDishType)).Cast<MainDishType>();
@@ -67,6 +72,26 @@ namespace Restaurant
             {
                 Debug.WriteLine("Menu type:" + menu.GetMenuType());
                 Debug.WriteLine("Price" + menu.GetTotalPrice());
+            }
+        }
+
+        private void Btn_addMenu_OnClick(object sender, RoutedEventArgs e)
+        {
+            _orderMachine.AddProductToProfile(
+                (MenuType)cmb_menuTypes.SelectionBoxItem,
+                (DrinkType)cmb_drinkTypes.SelectionBoxItem,
+                (SideType)cmb_sideType.SelectionBoxItem,
+                (MainDishType)cmb_mainDish.SelectionBoxItem,
+                (SizeType)cmb_sizeType.SelectionBoxItem);
+        }
+
+        private void Cmb_profile_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var profile = (Profile)cmb_profile.SelectionBoxItem;
+
+            if (profile != null)
+            {
+                _orderMachine.SwitchProfile(profile.Id);
             }
         }
     }

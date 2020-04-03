@@ -21,6 +21,8 @@ namespace Restaurant.Common
         {
             _profileCaretaker = new ProfileCaretaker();
             NewProfile();
+            NewProfile();
+            NewProfile();
         }
 
         /// <summary>
