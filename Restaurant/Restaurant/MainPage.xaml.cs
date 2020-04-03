@@ -1,76 +1,68 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Security.Cryptography.X509Certificates;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Restaurant.Factories;
+using Restaurant.Common;
+using Restaurant.Memento;
 using Restaurant.Models;
-using Restaurant.Models.Menus;
 using Restaurant.Types;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Restaurant
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
+        private readonly OrderMachine _orderMachine;
+
         public MainPage()
         {
             this.InitializeComponent();
 
-            List<IMenu<MainDishType>> menus = new List<IMenu<MainDishType>>();
+            _orderMachine = new OrderMachine();
+            DataContext = _orderMachine;
 
-            var menu1 = new DishFactory(
-                MenuType.WrapMenu, 
-                DrinkType.ColaZero,
-                SideType.Fries, 
-                MainDishType.ChickenWrap, 
-                SizeType.Large)
-                .CreateMenu();
-
-            var menu2 = new DishFactory(
-                    MenuType.BurgerMenu,
-                    DrinkType.Cola,
-                    SideType.Fries,
-                    MainDishType.BaconBurger,
-                    SizeType.Large)
-                .CreateMenu();
-
-            var menu3 = new DishFactory(
-                    MenuType.JuniorMenu,
-                    DrinkType.Cola,
-                    SideType.Fries,
-                    MainDishType.JuniorBurger,
-                    SizeType.Large)
-                .CreateMenu();
+            cmb_menuTypes.ItemsSource = Enum.GetValues(typeof(MenuType)).Cast<MenuType>();
+            cmb_mainDish.ItemsSource = Enum.GetValues(typeof(MainDishType)).Cast<MainDishType>();
+            cmb_drinkTypes.ItemsSource = Enum.GetValues(typeof(DrinkType)).Cast<DrinkType>();
+            cmb_sideType.ItemsSource = Enum.GetValues(typeof(SideType)).Cast<SideType>();
+            cmb_sizeType.ItemsSource = Enum.GetValues(typeof(SizeType)).Cast<SizeType>();
+            cmb_delivery.ItemsSource = Enum.GetValues(typeof(DeliveryType)).Cast<DeliveryType>();
+        }
 
 
-            menus.Add(menu1);
-            menus.Add(menu2);
-            menus.Add(menu3);
+        private void Btn_addMenu_OnClick(object sender, RoutedEventArgs e)
+        {
+            _orderMachine.AddProductToProfile(
+                (MenuType)cmb_menuTypes.SelectionBoxItem,
+                (DrinkType)cmb_drinkTypes.SelectionBoxItem,
+                (SideType)cmb_sideType.SelectionBoxItem,
+                (MainDishType)cmb_mainDish.SelectionBoxItem,
+                (SizeType)cmb_sizeType.SelectionBoxItem);
+        }
 
+        private void Cmb_profile_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
-
-            foreach (var menu in menus)
+            if (cmb_profile.Items.Count > 0)
             {
-                Debug.WriteLine("Menu type:" + menu.GetMenuType());
-                Debug.WriteLine("Food:" + menu.GetMainType());
-                Debug.WriteLine("Price" + menu.GetTotalPrice());
+                var profile = cmb_profile.Items?[cmb_profile.SelectedIndex];
+
+                if (profile != null)
+                {
+                    _orderMachine.SwitchProfile(((ProfileMemento)profile).ProfileId);
+                }
             }
+        }
+
+        private void Btn_completeOrder_OnClick(object sender, RoutedEventArgs e)
+        {
+            _orderMachine.Finish((DeliveryType)cmb_delivery.SelectionBoxItem);
+            cmb_profile.SelectedItem = 0;
+        }
+
+        private void Btn_addProfile_OnClick(object sender, RoutedEventArgs e)
+        {
+            _orderMachine.NewProfile();
         }
     }
 }

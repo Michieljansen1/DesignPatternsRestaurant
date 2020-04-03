@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Restaurant.Types;
+﻿using Restaurant.Types;
 
 namespace Restaurant.Models.Menus
 {
-    public class Wrap : IMenu<MainDishType>
+    public class Wrap : IMenu
     {
         private readonly DrinkType _drink;
 
-        private readonly SideType _side;
-
         private readonly MainDishType _main;
 
-        private readonly SizeType _size;
-
         private readonly double _price;
+
+        private readonly SideType _side;
+
+        private readonly SizeType _size;
 
         public Wrap(DrinkType drink, SideType side, MainDishType main, SizeType size, double price)
         {

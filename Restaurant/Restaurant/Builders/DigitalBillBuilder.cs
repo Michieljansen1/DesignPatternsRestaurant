@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Restaurant.Memento;
 using Restaurant.Models;
 
 namespace Restaurant.Builders
@@ -40,12 +41,12 @@ namespace Restaurant.Builders
             _digitalBill.Address = address;
         }
 
-        public void SetProfiles(List<Profile> profiles)
+        public void SetProfiles(List<ProfileMemento> profiles)
         {
             _digitalBill.Profiles = profiles;
         }
 
-        public void SetTotalPrice(int price)
+        public void SetTotalPrice(double price)
         {
             _digitalBill.TotalPrice = price;
         }

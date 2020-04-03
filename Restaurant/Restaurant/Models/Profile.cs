@@ -1,6 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Restaurant.Memento;
-using Restaurant.Types;
 
 namespace Restaurant.Models
 {
@@ -16,20 +17,20 @@ namespace Restaurant.Models
         public Profile(int id)
         {
             Id = id;
-            _menuItems = new ObservableCollection<IMenu<MainDishType>>();
+            _menuItems = new ObservableCollection<IMenu>();
         }
 
         public int Id { get; set; }
 
-        public ObservableCollection<IMenu<MainDishType>> ItemCollection => _menuItems;
+        public ObservableCollection<IMenu> ItemCollection => _menuItems;
 
-        private ObservableCollection<IMenu<MainDishType>> _menuItems { get; set; }
+        private ObservableCollection<IMenu> _menuItems { get; }
 
         /// <summary>
         ///     Adds item to the profile
         /// </summary>
         /// <param name="menu">MenuItem to add to the profile</param>
-        public void AddItem(IMenu<MainDishType> menu)
+        public void AddItem(IMenu menu)
         {
             _menuItems.Add(menu);
         }
@@ -40,7 +41,9 @@ namespace Restaurant.Models
         /// <returns>Memento object</returns>
         public ProfileMemento MakeMemento()
         {
-            return new ProfileMemento(Id, _menuItems);
+            List<IMenu> list = new List<IMenu>();
+            list.AddRange(_menuItems);
+            return new ProfileMemento(Id, list);
         }
 
         /// <summary>
@@ -50,7 +53,13 @@ namespace Restaurant.Models
         public void LoadMemento(ProfileMemento memento)
         {
             Id = memento.ProfileId;
-            _menuItems = memento.Items;
+            _menuItems.Clear();
+            foreach (IMenu mementoItem in memento.Items)
+            {
+                _menuItems.Add(mementoItem);
+            }
+
+            Debug.WriteLine($"Loaded profile: {memento.ProfileId}");
         }
     }
 }

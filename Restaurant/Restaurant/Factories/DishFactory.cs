@@ -7,35 +7,35 @@ using Restaurant.Types;
 
 namespace Restaurant.Factories
 {
-    public class DishFactory : MenuFactory<MainDishType>
+    public class DishFactory : MenuFactory
     {
         /// <summary>
-        /// The selected drink
-        /// </summary>
-        private readonly DrinkType _selectedDrink;
-
-        /// <summary>
-        /// The selected side dish
-        /// </summary>
-        private readonly SideType _selectedSide;
-
-        /// <summary>
-        /// The selected burger main dish
-        /// </summary>
-        private readonly MainDishType _selectedMain;
-
-        /// <summary>
-        /// The selected menu size
-        /// </summary>
-        private readonly SizeType _selectedSize;
-
-        /// <summary>
-        /// The selected menu type
+        ///     The selected menu type
         /// </summary>
         private readonly MenuType _menuType;
 
         /// <summary>
-        /// The total price of all items
+        ///     The selected drink
+        /// </summary>
+        private readonly DrinkType _selectedDrink;
+
+        /// <summary>
+        ///     The selected burger main dish
+        /// </summary>
+        private readonly MainDishType _selectedMain;
+
+        /// <summary>
+        ///     The selected side dish
+        /// </summary>
+        private readonly SideType _selectedSide;
+
+        /// <summary>
+        ///     The selected menu size
+        /// </summary>
+        private readonly SizeType _selectedSize;
+
+        /// <summary>
+        ///     The total price of all items
         /// </summary>
         private double _price;
 
@@ -57,7 +57,7 @@ namespace Restaurant.Factories
             _selectedSize = size;
         }
 
-        protected override IMenu<MainDishType> ConstuctMenu()
+        protected override IMenu ConstuctMenu()
         {
             switch (_menuType)
             {
@@ -68,16 +68,14 @@ namespace Restaurant.Factories
                     return new Wrap(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
 
                 case MenuType.JuniorMenu:
-                    return new Junior<MainDishType>(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
-
-
+                    return new Junior(_selectedDrink, _selectedSide, _selectedSize, _price);
             }
 
             return null;
         }
 
         /// <summary>
-        /// Apply the price of a given product to the total
+        ///     Apply the price of a given product to the total
         /// </summary>
         /// <param name="value">The menu item to add</param>
         private void ApplyItemPrice(Enum value)

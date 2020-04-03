@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Restaurant.Memento
@@ -10,15 +11,17 @@ namespace Restaurant.Memento
     /// </summary>
     internal class ProfileCaretaker
     {
-        private readonly List<ProfileMemento> _profiles; // List of memento's to save
-
         /// <summary>
         ///     Constructor
         /// </summary>
         public ProfileCaretaker()
         {
-            _profiles = new List<ProfileMemento>();
+            Profiles = new ObservableCollection<ProfileMemento>();
         }
+
+        public int TotalProfiles => Profiles.Count;
+
+        public ObservableCollection<ProfileMemento> Profiles { get; }
 
         /// <summary>
         ///     Adds / saves a new profile to the system
@@ -26,13 +29,18 @@ namespace Restaurant.Memento
         /// <param name="profile">Profile to add</param>
         public void AddOrUpdateProfile(ProfileMemento profile)
         {
-            var existingProfile = _profiles.FirstOrDefault(p => p.ProfileId == profile.ProfileId);
+            var existingProfile = Profiles.FirstOrDefault(p => p.ProfileId == profile.ProfileId);
 
             // If there no profile with the given ID we create a new one otherwise we replace the menu items
             if (existingProfile == null)
-                _profiles.Add(profile);
-            else
+            {
+                Profiles.Add(profile);
+                Console.WriteLine("Creating new profile");
+            } else
+            {
                 existingProfile.Items = profile.Items;
+                Console.WriteLine("Updating existing profile");
+            }
         }
 
         /// <summary>
@@ -42,17 +50,19 @@ namespace Restaurant.Memento
         /// <returns></returns>
         public ProfileMemento GetProfile(int Id)
         {
-            return _profiles.First(p => p.ProfileId == Id);
+            return Profiles.First(p => p.ProfileId == Id);
         }
 
-        public int TotalProfiles => _profiles.Count;
-
         /// <summary>
-        ///     Clears all the profiles from the system
+        ///     Removes all the profiles except the first. The first profile only gets cleared.
         /// </summary>
         public void Clear()
         {
-            _profiles.Clear();
+            var firstItem = Profiles[0];
+            firstItem.Items.Clear();
+
+            Profiles.Clear(); // Clearing the item list of the first profile
+            Profiles.Add(firstItem);
         }
     }
 }

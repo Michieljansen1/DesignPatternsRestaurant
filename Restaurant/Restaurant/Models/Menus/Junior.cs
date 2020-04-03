@@ -1,32 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Restaurant.Types;
+﻿using Restaurant.Types;
 
 namespace Restaurant.Models.Menus
 {
-    public class Junior<T> : IMenu<T> where T : Enum
+    public class Junior : IMenu
     {
         private readonly DrinkType _drink;
 
-        private readonly SideType _side;
-
-        private readonly T _main;
+        private readonly MainDishType _main;
 
         private readonly double _price;
 
+        private readonly SideType _side;
 
-        public Junior(DrinkType drink, SideType side, T main, SizeType _selectedSize, double price)
+        private readonly SizeType _size;
+
+
+        public Junior(DrinkType drink, SideType side, SizeType size, double price)
         {
             _drink = drink;
             _side = side;
-            _main = main;
+            _size = size;
             _price = price;
         }
 
         public MenuType GetMenuType() => MenuType.JuniorMenu;
+
+        // <inheritdoc />
+        public MainDishType GetMainType() => _main;
 
         // <inheritdoc />
         public DrinkType GetDrinkType() => _drink;
@@ -34,8 +34,6 @@ namespace Restaurant.Models.Menus
         // <inheritdoc />
         public SideType GetSideType() => _side;
 
-        // <inheritdoc />
-        public T GetMainType() => _main;
 
         // <inheritdoc />
         public SizeType GetSizeType() => SizeType.Small;

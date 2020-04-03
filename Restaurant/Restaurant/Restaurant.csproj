@@ -124,10 +124,8 @@
     <Compile Include="Builders\BillBuilder.cs" />
     <Compile Include="Builders\BillDirector.cs" />
     <Compile Include="Builders\DigitalBillBuilder.cs" />
-    <Compile Include="Common\AnalogBill.cs" />
     <Compile Include="Common\DeliveryToCarDecorator.cs" />
     <Compile Include="Common\DeliveryToTableDecorator.cs" />
-    <Compile Include="Common\DigitalBill.cs" />
     <Compile Include="Common\OrderMachine.cs" />
     <Compile Include="Decorators\DeliveryDecorator.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
@@ -138,6 +136,9 @@
     </Compile>
     <Compile Include="Memento\ProfileCaretaker.cs" />
     <Compile Include="Memento\ProfileMemento.cs" />
+    <Compile Include="MenuViewer.xaml.cs">
+      <DependentUpon>MenuViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Delivery.cs" />
     <Compile Include="Models\IMenu.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\DeliveryType.cs" />
     <Compile Include="Types\MainDishType.cs" />
     <Compile Include="Types\DrinkType.cs" />
     <Compile Include="Types\MenuType.cs" />
@@ -176,6 +178,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MenuViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

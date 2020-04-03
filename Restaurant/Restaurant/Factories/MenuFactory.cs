@@ -1,25 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Restaurant.Models;
+﻿using Restaurant.Models;
 
 namespace Restaurant.Factories
 {
-    public abstract class MenuFactory<T> where T : Enum
+    public abstract class MenuFactory
     {
-        /// <summary>
-        /// Constructs a new menu
-        /// </summary>
-        /// <returns>Returns <see cref="IMenu{T}"/> of the newly constructed menu</returns>
-        protected abstract IMenu<T> ConstuctMenu();
+        protected abstract IMenu ConstuctMenu();
 
-        /// <summary>
-        /// Create a new menu
-        /// </summary>
-        /// <returns>Returns <see cref="IMenu{T}"/> of the newly created menu</returns>
-        public IMenu<T> CreateMenu()
+
+        public IMenu CreateMenu()
         {
             return ConstuctMenu();
         }
