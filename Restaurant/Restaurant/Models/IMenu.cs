@@ -10,7 +10,7 @@ namespace Restaurant.Models
     /// <summary>
     /// Represents a menu and provides basic functionality 
     /// </summary>
-    public interface IMenu<T> where T : Enum
+    public interface IMenu
     {
         /// <summary>
         /// Get the current menu type
@@ -29,12 +29,12 @@ namespace Restaurant.Models
         /// </summary>
         /// <returns>Returns <see cref="SideType"/> of the current side</returns>
         SideType GetSideType();
-
-        /// <summary>
-        /// Gets the main type
-        /// </summary>
-        /// <returns>Returns <see cref="T"/> of the current main</returns>
-        T GetMainType();
+        //
+        // /// <summary>
+        // /// Gets the main type
+        // /// </summary>
+        // /// <returns>Returns <see cref="T"/> of the current main</returns>
+        // T GetMainType();
 
         /// <summary>
         /// Gets the size type

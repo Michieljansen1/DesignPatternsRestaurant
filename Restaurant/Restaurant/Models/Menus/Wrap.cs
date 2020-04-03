@@ -7,7 +7,7 @@ using Restaurant.Types;
 
 namespace Restaurant.Models.Menus
 {
-    public class Wrap : IMenu<MainDishType>
+    public class Wrap : IMenu
     {
         private readonly DrinkType _drink;
 

@@ -30,7 +30,7 @@ namespace Restaurant
             cmb_sideType.ItemsSource = Enum.GetValues(typeof(SideType)).Cast<SideType>();
             cmb_sizeType.ItemsSource = Enum.GetValues(typeof(SizeType)).Cast<SizeType>();
 
-            List<IMenu<MainDishType>> menus = new List<IMenu<MainDishType>>();
+            List<IMenu> menus = new List<IMenu>();
 
             var menu1 = new DishFactory(
                 MenuType.WrapMenu, 
@@ -66,7 +66,6 @@ namespace Restaurant
             foreach (var menu in menus)
             {
                 Debug.WriteLine("Menu type:" + menu.GetMenuType());
-                Debug.WriteLine("Food:" + menu.GetMainType());
                 Debug.WriteLine("Price" + menu.GetTotalPrice());
             }
         }

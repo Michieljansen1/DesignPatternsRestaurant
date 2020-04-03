@@ -2,7 +2,7 @@
 
 namespace Restaurant.Models.Menus
 {
-    public class Burger : IMenu<MainDishType>
+    public class Burger : IMenu
     {
         private readonly DrinkType _drink;
 

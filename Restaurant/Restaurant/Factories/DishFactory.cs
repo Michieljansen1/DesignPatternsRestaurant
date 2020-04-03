@@ -7,7 +7,7 @@ using Restaurant.Types;
 
 namespace Restaurant.Factories
 {
-    public class DishFactory : MenuFactory<MainDishType>
+    public class DishFactory : MenuFactory
     {
         /// <summary>
         /// The selected drink
@@ -57,7 +57,7 @@ namespace Restaurant.Factories
             _selectedSize = size;
         }
 
-        protected override IMenu<MainDishType> ConstuctMenu()
+        protected override IMenu ConstuctMenu()
         {
             switch (_menuType)
             {
@@ -68,8 +68,8 @@ namespace Restaurant.Factories
                     return new Wrap(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
 
                 case MenuType.JuniorMenu:
-                    return new Junior<MainDishType>(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
-
+                    // return new Junior(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
+                    return new Junior(_selectedDrink, _selectedSide, _selectedSize, _price);
 
             }
 

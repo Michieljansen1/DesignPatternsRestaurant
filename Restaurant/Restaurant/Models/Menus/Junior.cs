@@ -7,22 +7,23 @@ using Restaurant.Types;
 
 namespace Restaurant.Models.Menus
 {
-    public class Junior<T> : IMenu<T> where T : Enum
+    public class Junior: IMenu
     {
         private readonly DrinkType _drink;
 
         private readonly SideType _side;
 
-        private readonly T _main;
+        private readonly SizeType _size;
 
         private readonly double _price;
 
 
-        public Junior(DrinkType drink, SideType side, T main, SizeType _selectedSize, double price)
+
+        public Junior(DrinkType drink, SideType side, SizeType size, double price)
         {
             _drink = drink;
             _side = side;
-            _main = main;
+            _size = size;
             _price = price;
         }
 
@@ -34,8 +35,6 @@ namespace Restaurant.Models.Menus
         // <inheritdoc />
         public SideType GetSideType() => _side;
 
-        // <inheritdoc />
-        public T GetMainType() => _main;
 
         // <inheritdoc />
         public SizeType GetSizeType() => SizeType.Small;

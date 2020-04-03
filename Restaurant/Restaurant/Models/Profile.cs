@@ -17,20 +17,20 @@ namespace Restaurant.Models
         public Profile(int id)
         {
             Id = id;
-            _menuItems = new ObservableCollection<IMenu<MainDishType>>();
+            _menuItems = new ObservableCollection<IMenu>();
         }
 
         public int Id { get; set; }
 
-        public ObservableCollection<IMenu<MainDishType>> ItemCollection => _menuItems;
+        public ObservableCollection<IMenu> ItemCollection => _menuItems;
 
-        private ObservableCollection<IMenu<MainDishType>> _menuItems { get; set; }
+        private ObservableCollection<IMenu> _menuItems { get; set; }
 
         /// <summary>
         ///     Adds item to the profile
         /// </summary>
         /// <param name="menu">MenuItem to add to the profile</param>
-        public void AddItem(IMenu<MainDishType> menu)
+        public void AddItem(IMenu menu)
         {
             _menuItems.Add(menu);
         }

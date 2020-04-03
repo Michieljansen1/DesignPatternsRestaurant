@@ -15,11 +15,11 @@
     <Grid>
         <ListView ItemsSource="{Binding}">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="">
-                    <Grid>
-                        <TextBlock Text="test" FontSize="12"/>
-                    </Grid>
-                </DataTemplate>
+                <!-- <DataTemplate x:DataType="models:"> -->
+                <!--     <Grid> -->
+                <!--         <TextBlock Text="test" FontSize="12"/> -->
+                <!--     </Grid> -->
+                <!-- </DataTemplate> -->
             </ListView.ItemTemplate>
         </ListView>
     </Grid>
