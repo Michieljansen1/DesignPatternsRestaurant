@@ -11,6 +11,11 @@ using Restaurant.Types;
 
 namespace Restaurant.Factories
 {
+
+    /// <summary>
+    /// Class for junior factory must be of type enum of menu factory
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class JuniorFactory<T> : MenuFactory<T> where T : Enum 
     {
         /// <summary>
@@ -66,5 +71,6 @@ namespace Restaurant.Factories
         {
             _price += value.GetCustomAttribute<MenuPriceAttribute>().Price;
         }
+
     }
 }

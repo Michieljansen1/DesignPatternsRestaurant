@@ -11,6 +11,10 @@ using Restaurant.Types;
 
 namespace Restaurant.Factories
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class BurgerFactory : MenuFactory<BurgerType>
     {
         /// <summary>
