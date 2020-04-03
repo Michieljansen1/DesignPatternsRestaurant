@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Cryptography.X509Certificates;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -14,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Restaurant.Factories;
+using Restaurant.Models;
 using Restaurant.Models.Menus;
 using Restaurant.Types;
 
@@ -30,17 +32,23 @@ namespace Restaurant
         {
             this.InitializeComponent();
 
-            var menu = new BurgerFactory(DrinkType.Cola, SideType.Fries, BurgerType.BaconBurger, SizeType.Large).CreateMenu();
+            List<IMenu<MainDishType>> menus = new List<IMenu<MainDishType>>();
 
-     
-            var junior = new JuniorFactory<BurgerType>(DrinkType.Sinas, SideType.Fries, BurgerType.JuniorBurger).CreateMenu();
 
-            if (junior != null)
+            var burgerMenu = new BurgerFactory(DrinkType.Cola, SideType.Fries, MainDishType.BaconBurger, SizeType.Large).CreateMenu();
+            var junior = new JuniorFactory<MainDishType>(DrinkType.Sinas, SideType.Fries, MainDishType.JuniorBurger).CreateMenu();
+            var wrap = new WrapFactory(DrinkType.Cola, SideType.Salad, MainDishType.ChickenWrap, SizeType.Large).CreateMenu();
+
+            menus.Add(burgerMenu);
+
+            menus.Add(junior);
+
+            menus.Add(wrap);
+
+            foreach (var menu in menus)
             {
-                Debug.WriteLine($"Menu Type: {junior.GetMenuType()}");
-                Debug.WriteLine($"Menu Price: {junior.GetTotalPrice()}");
-                Debug.WriteLine($"Menu Price: {junior.GetSideType()}");
-                Debug.WriteLine($"Menu Price: {junior.GetDrinkType()}");
+                Debug.WriteLine("Maindish:" + menu.GetMainType());
+                Debug.WriteLine("Price" + menu.GetTotalPrice());
             }
         }
     }

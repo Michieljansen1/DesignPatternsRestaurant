@@ -149,12 +149,11 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Types\BurgerType.cs" />
+    <Compile Include="Types\MainDishType.cs" />
     <Compile Include="Types\DrinkType.cs" />
     <Compile Include="Types\MenuType.cs" />
     <Compile Include="Types\SideType.cs" />
     <Compile Include="Types\SizeType.cs" />
-    <Compile Include="Types\WrapType.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
