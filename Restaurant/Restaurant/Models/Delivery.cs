@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Restaurant.Types;
 
 namespace Restaurant.Models
 {
-    class Delivery
+    public class Delivery : Order
     {
+        public override string DeliveryType(DeliveryType deliveryType)
+        {
+            if (deliveryType == Types.DeliveryType.TO_COUNTER)
+            {
+                return "U kunt uw bestelling bij de kassa afhalen";
+            }
+
+            return "The input is not valid";
+        }
+
+        public override int GetDiscount()
+        {
+            return 0;
+        }
     }
 }

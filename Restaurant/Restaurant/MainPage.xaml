@@ -5,10 +5,51 @@
     xmlns:local="using:Restaurant"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:Restaurant.Models"
+    xmlns:common="using:Restaurant.Common"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Light" Width="auto">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ComboBox x:Name="cmb_profile" ItemsSource="{Binding ProfileCaretaker.Profiles, Mode=OneWay}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" SelectedIndex="0" SelectionChanged="Cmb_profile_OnSelectionChanged" Margin="5,5,5,5">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock >
+                        <Run Text="Profiel: "/>
+                        <Run Text="{Binding ProfileId}"/>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Button x:Name="btn_addProfile" Grid.Row="0" Grid.Column="1" Content="+" Click="Btn_addProfile_OnClick" Margin="5,5,5,5"/>
+
+        <ComboBox x:Name="cmb_menuTypes" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" SelectedIndex="0" Margin="5,5,5,5"/>
+        <ComboBox x:Name="cmb_mainDish" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" SelectedIndex="0" Margin="5,5,5,5"/>
+        <ComboBox x:Name="cmb_drinkTypes" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" SelectedIndex="0" Margin="5,5,5,5"/>
+        <ComboBox x:Name="cmb_sideType" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" SelectedIndex="0" Margin="5,5,5,5"/>
+        <ComboBox x:Name="cmb_sizeType" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch" SelectedIndex="0" Margin="5,5,5,5"/>
+        <Button x:Name="btn_addMenu" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Stretch" Content="Toevoegen" Click="Btn_addMenu_OnClick" Margin="5,5,5,5"/>
+
+        <local:MenuViewer x:Name="lst_menus" DataContext="{Binding ActiveProfile.ItemCollection, Mode=OneWay}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6"></local:MenuViewer>
+
+        <ComboBox x:Name="cmb_delivery" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SelectedIndex="0" Margin="5,5,5,5"/>
+        <Button x:Name="btn_completeOrder" Grid.Row="4" Grid.Column="5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Content="Bestellen" Click="Btn_completeOrder_OnClick" Margin="5,5,5,5"/>
 
     </Grid>
 </Page>

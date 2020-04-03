@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Restaurant.Models;
 
 namespace Restaurant.Factories
 {
-    class MenuFactory
+    public abstract class MenuFactory
     {
+        protected abstract IMenu ConstuctMenu();
+
+
+        public IMenu CreateMenu()
+        {
+            return ConstuctMenu();
+        }
     }
 }

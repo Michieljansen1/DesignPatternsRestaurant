@@ -12,7 +12,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -119,31 +119,41 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Attributes\MenuPriceAttribute.cs" />
     <Compile Include="Builders\AnalogBillBuilder.cs" />
     <Compile Include="Builders\BillBuilder.cs" />
     <Compile Include="Builders\BillDirector.cs" />
     <Compile Include="Builders\DigitalBillBuilder.cs" />
-    <Compile Include="Common\AnalogBill.cs" />
-    <Compile Include="Common\DeliveryToCar.cs" />
-    <Compile Include="Common\DeliveryToTable.cs" />
-    <Compile Include="Common\DigitalBill.cs" />
+    <Compile Include="Common\DeliveryToCarDecorator.cs" />
+    <Compile Include="Common\DeliveryToTableDecorator.cs" />
     <Compile Include="Common\OrderMachine.cs" />
     <Compile Include="Decorators\DeliveryDecorator.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Factories\DishFactory.cs" />
     <Compile Include="Factories\MenuFactory.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Memento\ProfileCaretaker.cs" />
-    <Compile Include="Memento\ProfileManagerMemento.cs" />
+    <Compile Include="Memento\ProfileMemento.cs" />
+    <Compile Include="MenuViewer.xaml.cs">
+      <DependentUpon>MenuViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Delivery.cs" />
-    <Compile Include="Models\Menu.cs" />
-    <Compile Include="Models\MenuItem.cs" />
-    <Compile Include="Models\Menus\BurgerMenu.cs" />
-    <Compile Include="Models\Menus\JuniorMenu.cs" />
-    <Compile Include="Models\Menus\WrapMenu.cs" />
+    <Compile Include="Models\IMenu.cs" />
+    <Compile Include="Models\Menus\Burger.cs" />
+    <Compile Include="Models\Menus\Junior.cs" />
+    <Compile Include="Models\Menus\Wrap.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\DeliveryType.cs" />
+    <Compile Include="Types\MainDishType.cs" />
+    <Compile Include="Types\DrinkType.cs" />
+    <Compile Include="Types\MenuType.cs" />
+    <Compile Include="Types\SideType.cs" />
+    <Compile Include="Types\SizeType.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -168,6 +178,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MenuViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
