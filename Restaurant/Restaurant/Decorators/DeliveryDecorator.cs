@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Restaurant.Models;
 
 namespace Restaurant.Decorators
 {
-    class DeliveryDecorator
+    abstract class DeliveryDecorator : Order
     {
+        private Order order;
+        public DeliveryDecorator(Order order)
+        {
+            this.order = order;
+        }
+
+        public Order GetOrder()
+        {
+            return this.order;
+        }
     }
 }

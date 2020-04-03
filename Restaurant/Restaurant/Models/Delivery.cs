@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Restaurant.Models
 {
-    class Delivery
+    public class Delivery : Order
     {
+        public override string DeliveryType(string deliveryType)
+        {
+            if (deliveryType == "ToCounter")
+            {
+                return "Please wait for your food at the counter";
+            }
+            else
+            {
+                return "The input is not valid";
+            }
+        }
+        public override int GetDiscount()
+        {
+            return 0;
+        }
     }
 }
