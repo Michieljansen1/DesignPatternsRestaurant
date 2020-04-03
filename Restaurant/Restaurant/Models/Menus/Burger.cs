@@ -7,19 +7,19 @@ using Restaurant.Types;
 
 namespace Restaurant.Models.Menus
 {
-    public class Burger : IMenu<BurgerType>
+    public class Burger : IMenu<MainDishType>
     {
         private readonly DrinkType _drink;
 
         private readonly SideType _side;
 
-        private readonly BurgerType _main;
+        private readonly MainDishType _main;
 
         private readonly SizeType _size;
 
         private readonly double _price;
 
-        public Burger(DrinkType drink, SideType side, BurgerType main, SizeType size, double price)
+        public Burger(DrinkType drink, SideType side, MainDishType main, SizeType size, double price)
         {
             _drink = drink;
             _side = side;
@@ -38,7 +38,7 @@ namespace Restaurant.Models.Menus
         public SideType GetSideType() => _side;
 
         // <inheritdoc />
-        public BurgerType GetMainType() => _main;
+        public MainDishType GetMainType() => _main;
 
         // <inheritdoc />
         public SizeType GetSizeType() => _size;

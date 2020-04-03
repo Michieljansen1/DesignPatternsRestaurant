@@ -11,7 +11,11 @@ using Restaurant.Types;
 
 namespace Restaurant.Factories
 {
-    public class BurgerFactory : MenuFactory<BurgerType>
+
+    /// <summary>
+    /// Class for burger type, accepts Burgertype enums
+    /// </summary>
+    public class BurgerFactory : MenuFactory<MainDishType>
     {
         /// <summary>
         /// The selected drink
@@ -26,7 +30,7 @@ namespace Restaurant.Factories
         /// <summary>
         /// The selected burger main dish
         /// </summary>
-        private readonly BurgerType _selectedMain;
+        private readonly MainDishType _selectedMain;
 
         /// <summary>
         /// The selected menu size
@@ -43,9 +47,9 @@ namespace Restaurant.Factories
         /// </summary>
         /// <param name="drink">The <see cref="DrinkType"/> of the selected drink</param>
         /// <param name="side">The <see cref="SideType"/> of the selected side</param>
-        /// <param name="main">The <see cref="BurgerType"/> of the selected burger</param>
+        /// <param name="main">The <see cref="MainDishType"/> of the selected burger</param>
         /// <param name="size">The <see cref="SizeType"/> of the selected menu size</param>
-        public BurgerFactory(DrinkType drink, SideType side, BurgerType main, SizeType size)
+        public BurgerFactory(DrinkType drink, SideType side, MainDishType main, SizeType size)
         {
             _selectedDrink = drink;
             ApplyItemPrice(drink);
@@ -60,7 +64,7 @@ namespace Restaurant.Factories
         }
 
         // <inheritdoc />
-        protected override IMenu<BurgerType> ConstuctMenu()
+        protected override IMenu<MainDishType> ConstuctMenu()
         {
             return new Burger(_selectedDrink, _selectedSide, _selectedMain, _selectedSize, _price);
         }

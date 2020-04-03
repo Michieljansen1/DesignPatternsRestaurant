@@ -11,7 +11,12 @@ using Restaurant.Types;
 
 namespace Restaurant.Factories
 {
-    public class JuniorFactory<T> : MenuFactory<T> where T : Enum
+
+    /// <summary>
+    /// Class for junior factory must be of type enum of menu factory
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class JuniorFactory<T> : MenuFactory<T> where T : Enum 
     {
         /// <summary>
         /// The <see cref="DrinkType"/>
@@ -42,11 +47,6 @@ namespace Restaurant.Factories
         /// <param name="main">The <see cref="T"/> of the selected junior main</param>
         public JuniorFactory(DrinkType drink, SideType side, T main)
         {
-            // if (main.GetCustomAttribute<MenuRestrictionAttribute>()?.Type != MenuType.JuniorMenu)
-            // {
-            //     throw new Exception($"Menu item '{main}' is not on the junior menu");
-            // }
-
             _selectedDrink = drink;
             ApplyItemPrice(drink);
 
@@ -71,5 +71,6 @@ namespace Restaurant.Factories
         {
             _price += value.GetCustomAttribute<MenuPriceAttribute>().Price;
         }
+
     }
 }
