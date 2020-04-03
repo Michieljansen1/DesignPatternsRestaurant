@@ -13,7 +13,7 @@ namespace Restaurant.Common
         {
             if (deliveryType == Types.DeliveryType.TO_TABLE_INSIDE)
             {
-                return "The food will be send to your table inside.";
+                return "Uw bestelling wordt naar uw tafel gebracht.";
             }
             else
             {

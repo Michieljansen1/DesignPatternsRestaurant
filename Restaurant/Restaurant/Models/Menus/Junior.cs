@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Restaurant.Types;
+﻿using Restaurant.Types;
 
 namespace Restaurant.Models.Menus
 {
-    public class Junior: IMenu
+    public class Junior : IMenu
     {
         private readonly DrinkType _drink;
 
         private readonly MainDishType _main;
 
+        private readonly double _price;
+
         private readonly SideType _side;
 
         private readonly SizeType _size;
-
-        private readonly double _price;
-
 
 
         public Junior(DrinkType drink, SideType side, SizeType size, double price)

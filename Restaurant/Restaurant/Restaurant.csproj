@@ -124,10 +124,8 @@
     <Compile Include="Builders\BillBuilder.cs" />
     <Compile Include="Builders\BillDirector.cs" />
     <Compile Include="Builders\DigitalBillBuilder.cs" />
-    <Compile Include="Common\AnalogBill.cs" />
     <Compile Include="Common\DeliveryToCarDecorator.cs" />
     <Compile Include="Common\DeliveryToTableDecorator.cs" />
-    <Compile Include="Common\DigitalBill.cs" />
     <Compile Include="Common\OrderMachine.cs" />
     <Compile Include="Decorators\DeliveryDecorator.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />

@@ -6,13 +6,13 @@ namespace Restaurant.Models.Menus
     {
         private readonly DrinkType _drink;
 
-        private readonly SideType _side;
-
         private readonly MainDishType _main;
 
-        private readonly SizeType _size;
-
         private readonly double _price;
+
+        private readonly SideType _side;
+
+        private readonly SizeType _size;
 
         public Burger(DrinkType drink, SideType side, MainDishType main, SizeType size, double price)
         {

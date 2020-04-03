@@ -26,7 +26,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <ComboBox x:Name="cmb_profile" ItemsSource="{Binding ProfileCaretaker.Profiles, Mode=OneWay}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" SelectedIndex="0" SelectionChanged="Cmb_profile_OnSelectionChanged">
+        <ComboBox x:Name="cmb_profile" ItemsSource="{Binding ProfileCaretaker.Profiles, Mode=OneWay}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" SelectedIndex="0" SelectionChanged="Cmb_profile_OnSelectionChanged" Margin="5,5,5,5">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock >
@@ -37,22 +37,19 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <ComboBox x:Name="cmb_menuTypes" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" SelectedIndex="0"/>
-        <ComboBox x:Name="cmb_mainDish" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" SelectedIndex="0"/>
-        <ComboBox x:Name="cmb_drinkTypes" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" SelectedIndex="0"/>
-        <ComboBox x:Name="cmb_sideType" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" SelectedIndex="0"/>
-        <ComboBox x:Name="cmb_sizeType" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch" SelectedIndex="0"/>
-        <Button x:Name="btn_addMenu" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Stretch" Content="Toevoegen" Click="Btn_addMenu_OnClick"/>
+        <Button x:Name="btn_addProfile" Grid.Row="0" Grid.Column="1" Content="+" Click="Btn_addProfile_OnClick" Margin="5,5,5,5"/>
+
+        <ComboBox x:Name="cmb_menuTypes" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" SelectedIndex="0" Margin="5,5,5,5"/>
+        <ComboBox x:Name="cmb_mainDish" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" SelectedIndex="0" Margin="5,5,5,5"/>
+        <ComboBox x:Name="cmb_drinkTypes" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" SelectedIndex="0" Margin="5,5,5,5"/>
+        <ComboBox x:Name="cmb_sideType" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" SelectedIndex="0" Margin="5,5,5,5"/>
+        <ComboBox x:Name="cmb_sizeType" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch" SelectedIndex="0" Margin="5,5,5,5"/>
+        <Button x:Name="btn_addMenu" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Stretch" Content="Toevoegen" Click="Btn_addMenu_OnClick" Margin="5,5,5,5"/>
 
         <local:MenuViewer x:Name="lst_menus" DataContext="{Binding ActiveProfile.ItemCollection, Mode=OneWay}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6"></local:MenuViewer>
 
-        <TextBlock Grid.Row="4" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
-            <Run Text="Totaal:"/>
-                <Run Text="{Binding TotalPrice, Mode=OneWay}"/>
-        </TextBlock>
-
-        <ComboBox x:Name="cmb_delivery" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SelectedIndex="0" />
-        <Button x:Name="btn_completeOrder" Grid.Row="4" Grid.Column="5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Content="Bestellen" Click="Btn_completeOrder_OnClick"/>
+        <ComboBox x:Name="cmb_delivery" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SelectedIndex="0" Margin="5,5,5,5"/>
+        <Button x:Name="btn_completeOrder" Grid.Row="4" Grid.Column="5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Content="Bestellen" Click="Btn_completeOrder_OnClick" Margin="5,5,5,5"/>
 
     </Grid>
 </Page>

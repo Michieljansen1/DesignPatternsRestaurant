@@ -1,28 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Restaurant.Common;
-using Restaurant.Factories;
 using Restaurant.Memento;
 using Restaurant.Models;
 using Restaurant.Types;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace Restaurant
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
-
-        private OrderMachine _orderMachine;
+        private readonly OrderMachine _orderMachine;
 
         public MainPage()
         {
@@ -52,17 +42,27 @@ namespace Restaurant
 
         private void Cmb_profile_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var profile = cmb_profile.Items?[cmb_profile.SelectedIndex];
 
-            if (profile != null)
+            if (cmb_profile.Items.Count > 0)
             {
-                _orderMachine.SwitchProfile(((ProfileMemento)profile).ProfileId);
+                var profile = cmb_profile.Items?[cmb_profile.SelectedIndex];
+
+                if (profile != null)
+                {
+                    _orderMachine.SwitchProfile(((ProfileMemento)profile).ProfileId);
+                }
             }
         }
 
         private void Btn_completeOrder_OnClick(object sender, RoutedEventArgs e)
         {
             _orderMachine.Finish((DeliveryType)cmb_delivery.SelectionBoxItem);
+            cmb_profile.SelectedItem = 0;
+        }
+
+        private void Btn_addProfile_OnClick(object sender, RoutedEventArgs e)
+        {
+            _orderMachine.NewProfile();
         }
     }
 }

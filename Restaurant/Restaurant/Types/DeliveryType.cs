@@ -4,6 +4,6 @@
     {
         TO_COUNTER,
         TO_TABLE_INSIDE,
-        TO_CAR_A,
+        TO_CAR_A
     }
 }

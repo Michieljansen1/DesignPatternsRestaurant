@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
 using Windows.UI.Popups;
 using Restaurant.Builders;
 using Restaurant.Factories;
@@ -19,20 +14,32 @@ namespace Restaurant.Common
     /// </summary>
     class OrderMachine
     {
-        private Profile _activeProfile; // current profile that is ordering
-        private ProfileCaretaker _profileCaretaker; // keeps track of the memento's
-
         /// <summary>
         ///     Constructor
         /// </summary>
         /// <param name="orderType"></param>
         public OrderMachine(string orderType = null)
         {
-            _profileCaretaker = new ProfileCaretaker();
-            NewProfile();
-            NewProfile();
+            ProfileCaretaker = new ProfileCaretaker();
             NewProfile();
         }
+
+        public double TotalPrice
+        {
+            get {
+                double total = 0;
+                foreach (ProfileMemento profileCaretakerProfile in ProfileCaretaker.Profiles)
+                {
+                    profileCaretakerProfile.Items.ForEach(item => total += item.GetTotalPrice());
+                }
+
+                return total;
+            }
+        }
+
+        public Profile ActiveProfile { get; private set; }
+
+        public ProfileCaretaker ProfileCaretaker { get; }
 
         /// <summary>
         ///     Creates a new menu and adds it to the current active profile
@@ -53,7 +60,7 @@ namespace Restaurant.Common
                     sizeType)
                 .CreateMenu();
 
-            _activeProfile.AddItem(menu);
+            ActiveProfile.AddItem(menu);
         }
 
         /// <summary>
@@ -62,24 +69,11 @@ namespace Restaurant.Common
         /// <param name="Id">Id of the profile to switch to</param>
         public void SwitchProfile(int Id)
         {
-            var profileMemento = _activeProfile.MakeMemento();
-            _profileCaretaker.AddOrUpdateProfile(profileMemento);
+            var profileMemento = ActiveProfile.MakeMemento();
+            ProfileCaretaker.AddOrUpdateProfile(profileMemento);
 
-            var newProfile = _profileCaretaker.GetProfile(Id);
-            _activeProfile.LoadMemento(newProfile);
-        }
-
-        public double TotalPrice
-        {
-            get {
-                double total = 0;
-                foreach (ProfileMemento profileCaretakerProfile in _profileCaretaker.Profiles)
-                {
-                    profileCaretakerProfile.Items.ForEach(item => total += item.GetTotalPrice());
-                }
-
-                return total;
-            }
+            var newProfile = ProfileCaretaker.GetProfile(Id);
+            ActiveProfile.LoadMemento(newProfile);
         }
 
         /// <summary>
@@ -87,20 +81,28 @@ namespace Restaurant.Common
         /// </summary>
         public void NewProfile()
         {
-            _activeProfile = new Profile(_profileCaretaker.TotalProfiles);
-            _profileCaretaker.AddOrUpdateProfile(_activeProfile.MakeMemento());
-        }
+            if (ActiveProfile == null)
+            {
+                ActiveProfile = new Profile(ProfileCaretaker.TotalProfiles);
+            } else
+            {
+                ProfileCaretaker.AddOrUpdateProfile(ActiveProfile.MakeMemento());
+            }
 
-        public Profile ActiveProfile => _activeProfile;
+            ActiveProfile.ItemCollection.Clear();
+            ActiveProfile.Id = ProfileCaretaker.TotalProfiles;
+            ProfileCaretaker.AddOrUpdateProfile(ActiveProfile.MakeMemento());
+        }
 
         /// <summary>
         ///     Finalizes the current order
         /// </summary>
         public void Finish(DeliveryType deliverType)
         {
+            SwitchProfile(0);
             var director = new BillDirector();
             var list = new List<ProfileMemento>();
-            list.AddRange(_profileCaretaker.Profiles);
+            list.AddRange(ProfileCaretaker.Profiles);
             var deliverMessage = "";
 
             switch (deliverType)
@@ -108,25 +110,24 @@ namespace Restaurant.Common
                 case DeliveryType.TO_COUNTER:
                     deliverMessage = new Delivery().DeliveryType(deliverType);
                     director.SetBuilder(new AnalogBillBuilder());
-                    director.BuildAnalogBill(System.DateTime.Now, list, TotalPrice, "Emmen", "Parallelweg 36A");
+                    director.BuildAnalogBill(DateTime.Now, list, TotalPrice, "Emmen", "Parallelweg 36A");
                     break;
                 case DeliveryType.TO_TABLE_INSIDE:
                     deliverMessage = new DeliveryToTableDecorator(new Delivery()).DeliveryType(deliverType);
                     director.SetBuilder(new AnalogBillBuilder());
-                    director.BuildAnalogBill(System.DateTime.Now, list, TotalPrice, "Emmen", "Parallelweg 36A");
+                    director.BuildAnalogBill(DateTime.Now, list, TotalPrice, "Emmen", "Parallelweg 36A");
                     break;
                 case DeliveryType.TO_CAR_A:
                     deliverMessage = new DeliveryToCarDecorator(new Delivery()).DeliveryType(deliverType);
                     director.SetBuilder(new DigitalBillBuilder());
-                    director.BuildDigitalBill(System.DateTime.Now, list, TotalPrice, "Emmen", "Parallelweg 36A", "info@kamermaat.nl");
+                    director.BuildDigitalBill(DateTime.Now, list, TotalPrice, "Emmen", "Parallelweg 36A",
+                        "info@kamermaat.nl");
                     break;
             }
-            
+
 
             new MessageDialog($"{deliverMessage}\n{director.GetBill()}").ShowAsync();
-            // _profileCaretaker.Clear();
+            ProfileCaretaker.Clear();
         }
-
-        public ProfileCaretaker ProfileCaretaker => _profileCaretaker;
     }
 }

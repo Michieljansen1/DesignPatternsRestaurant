@@ -1,19 +1,19 @@
-﻿
+﻿using Restaurant.Types;
+
 namespace Restaurant.Models
 {
     public class Delivery : Order
     {
-        public override string DeliveryType(Types.DeliveryType deliveryType)
+        public override string DeliveryType(DeliveryType deliveryType)
         {
             if (deliveryType == Types.DeliveryType.TO_COUNTER)
             {
-                return "Please wait for your food at the counter";
+                return "U kunt uw bestelling bij de kassa afhalen";
             }
-            else
-            {
-                return "The input is not valid";
-            }
+
+            return "The input is not valid";
         }
+
         public override int GetDiscount()
         {
             return 0;

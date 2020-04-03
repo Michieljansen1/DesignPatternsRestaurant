@@ -14,7 +14,7 @@ namespace Restaurant.Common
         {
             if(deliveryType == Types.DeliveryType.TO_CAR_A)
             {
-                return "The food will be send to your car on parking lot A";
+                return "Uw bestelling zal naar uw auto gebracht worden";
             }
             else
             {

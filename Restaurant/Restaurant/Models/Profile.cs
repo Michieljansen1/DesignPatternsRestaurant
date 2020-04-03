@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Restaurant.Memento;
-using Restaurant.Types;
 
 namespace Restaurant.Models
 {
@@ -25,7 +24,7 @@ namespace Restaurant.Models
 
         public ObservableCollection<IMenu> ItemCollection => _menuItems;
 
-        private ObservableCollection<IMenu> _menuItems { get; set; }
+        private ObservableCollection<IMenu> _menuItems { get; }
 
         /// <summary>
         ///     Adds item to the profile
@@ -59,6 +58,7 @@ namespace Restaurant.Models
             {
                 _menuItems.Add(mementoItem);
             }
+
             Debug.WriteLine($"Loaded profile: {memento.ProfileId}");
         }
     }

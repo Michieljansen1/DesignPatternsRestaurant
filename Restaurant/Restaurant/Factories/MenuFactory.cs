@@ -1,11 +1,9 @@
-﻿using System;
-using Restaurant.Models;
+﻿using Restaurant.Models;
 
 namespace Restaurant.Factories
 {
     public abstract class MenuFactory
     {
-
         protected abstract IMenu ConstuctMenu();
 
 
