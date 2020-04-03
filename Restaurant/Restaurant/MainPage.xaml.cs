@@ -34,7 +34,6 @@ namespace Restaurant
 
             List<IMenu<MainDishType>> menus = new List<IMenu<MainDishType>>();
 
-
             var burgerMenu = new BurgerFactory(DrinkType.Cola, SideType.Fries, MainDishType.BaconBurger, SizeType.Large).CreateMenu();
             var junior = new JuniorFactory<MainDishType>(DrinkType.Sinas, SideType.Fries, MainDishType.JuniorBurger).CreateMenu();
             var wrap = new WrapFactory(DrinkType.Cola, SideType.Salad, MainDishType.ChickenWrap, SizeType.Large).CreateMenu();

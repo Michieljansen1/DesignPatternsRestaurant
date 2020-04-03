@@ -38,7 +38,7 @@ namespace Restaurant.Models
         ///     Creates a new Memento object that can be saved with the ProfileCareTaker
         /// </summary>
         /// <returns>Memento object</returns>
-        public ProfileMemento StoreInMemento()
+        public ProfileMemento MakeMemento()
         {
             return new ProfileMemento(Id, _menuItems);
         }
