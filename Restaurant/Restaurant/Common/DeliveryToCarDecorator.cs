@@ -5,7 +5,7 @@ namespace Restaurant.Common
 {
     class DeliveryToCarDecorator : DeliveryDecorator
     {
-        public DeliveryToCarDecorator(Delivery delivery) : base(delivery)
+        public DeliveryToCarDecorator(Order order) : base(order)
         {
 
         }
