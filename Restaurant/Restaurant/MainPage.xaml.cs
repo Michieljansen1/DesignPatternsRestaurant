@@ -31,6 +31,8 @@ namespace Restaurant
             this.InitializeComponent();
 
             var menu = new BurgerFactory(DrinkType.Cola, SideType.Fries, BurgerType.BaconBurger, SizeType.Large).CreateMenu();
+
+     
             var junior = new JuniorFactory<BurgerType>(DrinkType.Sinas, SideType.Fries, BurgerType.JuniorBurger).CreateMenu();
 
             if (junior != null)

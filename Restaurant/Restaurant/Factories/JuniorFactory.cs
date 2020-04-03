@@ -11,7 +11,7 @@ using Restaurant.Types;
 
 namespace Restaurant.Factories
 {
-    public class JuniorFactory<T> : MenuFactory<T> where T : Enum
+    public class JuniorFactory<T> : MenuFactory<T> where T : Enum 
     {
         /// <summary>
         /// The <see cref="DrinkType"/>
