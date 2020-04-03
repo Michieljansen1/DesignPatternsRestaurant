@@ -39,5 +39,17 @@
         <Button x:Name="btn_addMenu" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Stretch" Content="Toevoegen" Click="Btn_addMenu_OnClick"/>
 
         <local:MenuViewer x:Name="lst_menus" DataContext="{Binding ActiveProfile.ItemCollection, Mode=OneWay}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5"></local:MenuViewer>
+
+        <Button x:Name="btn_compleetOrder" Grid.Row="4" Grid.Column="5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Content="Bestellen" />
+        <TextBlock Grid.Row="4" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Text="Total: is 10000000"></TextBlock>
+
+        <ComboBox x:Name="cmb_delivery" ItemsSource="{Binding ProfileCaretaker.Profiles, Mode=OneWay}"  Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SelectedIndex="0" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding ProfileId}"></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
     </Grid>
 </Page>

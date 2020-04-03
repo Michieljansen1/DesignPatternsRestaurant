@@ -88,6 +88,7 @@ namespace Restaurant
         private void Cmb_profile_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var profile = (Profile)cmb_profile.SelectionBoxItem;
+            
 
             if (profile != null)
             {
