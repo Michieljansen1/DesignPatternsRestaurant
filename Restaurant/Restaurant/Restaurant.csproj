@@ -145,11 +145,8 @@
     <Compile Include="Models\IMenu.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\Menus\Burger.cs" />
-    <Compile Include="Models\Menus\BurgerMenu.cs" />
     <Compile Include="Models\Menus\Junior.cs" />
-    <Compile Include="Models\Menus\JuniorMenu.cs" />
     <Compile Include="Models\Menus\Wrap.cs" />
-    <Compile Include="Models\Menus\WrapMenu.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -42,11 +42,6 @@ namespace Restaurant.Factories
         /// <param name="main">The <see cref="T"/> of the selected junior main</param>
         public JuniorFactory(DrinkType drink, SideType side, T main)
         {
-            // if (main.GetCustomAttribute<MenuRestrictionAttribute>()?.Type != MenuType.JuniorMenu)
-            // {
-            //     throw new Exception($"Menu item '{main}' is not on the junior menu");
-            // }
-
             _selectedDrink = drink;
             ApplyItemPrice(drink);
 
